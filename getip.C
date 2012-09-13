@@ -17,7 +17,7 @@ string MyName = "";
 int main (int argc, const char *argv[])
 {
   MyName = argv[0];
-  char* host_ptr = "localhost";
+  char* host_ptr = (char*)"localhost";
   char* ip_ptr = NULL;
 
   for(int i=0; i<argc; ++i) {

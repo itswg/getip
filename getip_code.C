@@ -9,6 +9,7 @@
 #include <netdb.h>
 #include <sys/types.h>
 
+#include <string.h>
 #include <algorithm>
 #include <string>
 #include <iostream>
