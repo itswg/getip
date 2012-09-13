@@ -4,6 +4,14 @@ LIBDIR=
 OBJECTDIR=objects
 LDFLAGS= -L./$(LIBDIR)
 BIN=getip
+ifeq ($(prefix),"")
+  PREFIX=/usr/local
+else
+	PREFIX=$(prefix)
+endif
+
+BINDIR=$(PREFIX)/bin
+LIBDIR=$(PREFIX)/lib
 EXECUTABLES= $(BIN)
 LIBRARY=
 TCL_INTERFACE_LIBRARY=libGetiptcl.so
@@ -44,4 +52,5 @@ clean:
 	rm -fr $(OBJECTDIR)
 
 install: all
-	@echo ; echo Warning: Can compile, but install implemented yet.
+	cp $(BIN) $(BINDIR)/;
+	cp $(TCL_INTERFACE_LIBRARY) $(LIBDIR)/
