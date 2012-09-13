@@ -1,14 +1,15 @@
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <sys/types.h>
-#include <signal.h>
-
+//===========================================================================
+// FILE:        getip.C
+// DESCRIPTION: Program that gets IP address of interface of 1+ hosts
+// AUTHOR:      Matthew Bruckler (matt@bruckler.net)
+// ORIG_DATE:   Sep 10, 2012
+//===========================================================================
+#include "getip_code.h"
 #include <iostream>
 #include <string>
  using namespace std;
 #include <stdlib.h>
 
-char* getip(const char*);
 void PrintUsage(void);
 
 string MyName = "";
@@ -16,45 +17,30 @@ string MyName = "";
 int main (int argc, const char *argv[])
 {
   MyName = argv[0];
-  string buffer;
-  gethostname(const_cast<char*>(buffer.c_str()), 256);
+  char* host_ptr = "localhost";
+  char* ip_ptr = NULL;
 
-  for( int i=1; i<argc; i++) {
-    if ( string(argv[i]) == "-h" ||
-         string(argv[i]) == "-?" ) {
+  for(int i=0; i<argc; ++i) {
+    if(argc == 1) {
+      ip_ptr = getip(host_ptr);
+    } else if(i ==0) {
+      continue;
+    } else if ( string(argv[i]) == "-h" || string(argv[i]) == "-?" ) {
         PrintUsage();
-    } else if ( string(argv[i]) == "localhost") {
+        break;
     } else {
-      buffer = argv[i];
+      ip_ptr = getip(argv[i]);
     }
-  }
-  char* ip_ptr = getip(buffer.c_str());
-  if (ip_ptr == NULL) {
-    cerr<<"BadHost"<<endl;
-    return 1;
-  } else {
-    string ip = ip_ptr;
-    cout<<ip<<endl;
+    if(ip_ptr == NULL) {
+      cerr<<"BadHost "<<argv[i]<<endl;
+    } else {
+      cout<<ip_ptr<<endl;
+    }
   }
   return 0;
 }
 
 //========================================================================
-char* getip(const char* host)
-{
-  struct hostent* h;
-  h = gethostbyname(host);
-
-  char * val;
-  if (h) {
-    val = inet_ntoa(*(struct in_addr *)h->h_addr);
-  } else {
-   val = NULL;
-  }
-  return val;
-}
-
-//------------------------------------------------------------------------
 void PrintUsage(void)
 {
   cout<<"Usage:"<<endl

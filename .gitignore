@@ -2,3 +2,5 @@ objects/
 *.swp
 core.*
 getip
+libGetiptcl.so
+libGetiptcl.so
