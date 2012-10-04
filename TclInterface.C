@@ -25,9 +25,9 @@ int getip_interface(ClientData clientData,
       ip_ptr = getip(Tcl_GetString(argv[i]));
     }
     if(ip_ptr == NULL) {
-      result<<"BadHost "<<Tcl_GetString(argv[i])<<endl;
+      result<<"BadHost:"<<Tcl_GetString(argv[i])<<" ";
     } else {
-      result<<ip_ptr<<endl;
+      result<<ip_ptr<<" ";
     }
   }
   Tcl_SetResult(interp,const_cast<char*>(result.str().c_str()), TCL_VOLATILE);

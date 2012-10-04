@@ -21,11 +21,13 @@ char* getip(const char* host)
   struct hostent* h;
   char buffer[256];
   string tmp = host;
+  tmp.erase(remove_if(tmp.begin(), tmp.end(), ::isspace), tmp.end());
+
   transform(tmp.begin(),tmp.end(),tmp.begin(),::tolower);
-  if (tmp == "localhost" || tmp == "") {
+  if (tmp == "localhost" || tmp == "" || tmp == "127.0.0.1") {
     gethostname(buffer, 256);
   }else {
-   strcpy(buffer,host);
+   strcpy(buffer,tmp.c_str());
   }
   h = gethostbyname(buffer);
   char * val;
