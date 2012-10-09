@@ -31,11 +31,7 @@ int main (int argc, const char *argv[])
     } else {
       ip_ptr = getip(argv[i]);
     }
-    if(ip_ptr == NULL) {
-      cerr<<"BadHost "<<argv[i]<<endl;
-    } else {
-      cout<<ip_ptr<<endl;
-    }
+    cout<<ip_ptr<<endl;
   }
   return 0;
 }

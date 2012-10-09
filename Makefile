@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -Wall -g -I /opt/local/include/ -I./shared/src -I./ -fpic
+CFLAGS= -Wall -g -I /opt/local/include/ -I./shared/src -I./ -fpic -std=c++0x
 LIBDIR=
 OBJECTDIR=objects
 LDFLAGS= -L./$(LIBDIR)
