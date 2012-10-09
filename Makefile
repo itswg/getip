@@ -4,9 +4,8 @@ LIBDIR=
 OBJECTDIR=objects
 LDFLAGS= -L./$(LIBDIR)
 BIN=getip
-ifeq ($(prefix),"")
-  PREFIX=/usr/local
-else
+PREFIX=/usr/local
+ifneq ("$(prefix)","")
 	PREFIX=$(prefix)
 endif
 
