@@ -13,7 +13,7 @@ BINDIR=$(PREFIX)/bin
 LIBDIR=$(PREFIX)/lib
 EXECUTABLES= $(BIN)
 LIBRARY=
-TCL_INTERFACE_LIBRARY=libGetiptcl.so
+TCL_INTERFACE_LIBRARY=libgetiptcl.so
 
 OBJECTS_= \
  	getip_code.o \
@@ -51,5 +51,7 @@ clean:
 	rm -fr $(OBJECTDIR)
 
 install: all
-	cp $(BIN) $(BINDIR)/;
-	cp $(TCL_INTERFACE_LIBRARY) $(LIBDIR)/
+	install -d -m 0755 $(BINDIR)/;
+	install -d -m 0755 $(LIBDIR)/
+	install -m 0755 $(BIN) $(BINDIR)/;
+	install -m 0755 $(TCL_INTERFACE_LIBRARY) $(LIBDIR)/
