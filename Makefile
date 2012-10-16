@@ -49,6 +49,7 @@ remake: clean
 clean:
 	rm -f $(EXECUTABLES) $(OBJECTDIR)/*.o
 	rm -fr $(OBJECTDIR)
+	rm -f $(TCL_INTERFACE_LIBRARY)
 
 install: all
 	install -d -m 0755 $(BINDIR)/;
